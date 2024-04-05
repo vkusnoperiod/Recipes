@@ -16,6 +16,6 @@ data class UserEntity(
 
     val favouriteRecipeId: Int? = null
 ) {
-    // Вспомогательный конструктор, который не требует id и favouriteRecipeId
+
     constructor(username: String, password: String) : this(null, username, password, null)
 }

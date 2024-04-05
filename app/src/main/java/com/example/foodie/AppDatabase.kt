@@ -12,5 +12,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
     abstract fun userDao(): UserDao
     abstract fun fridgeDao(): FridgeDao
+    abstract fun favoriteRecipeDao(): FavoriteRecipesDao
     // Остальные DAO по мере необходимости
 }

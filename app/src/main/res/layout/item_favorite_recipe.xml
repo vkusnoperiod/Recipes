@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Indicator can be a view with a red or green background -->
+    <View
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/indicator_red" /> <!-- Replace with your drawable -->
+
+    <!-- Recipe name and image -->
+    <!-- Implement the layout based on your design -->
+</LinearLayout>
