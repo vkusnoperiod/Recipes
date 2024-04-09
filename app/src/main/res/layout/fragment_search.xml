@@ -1,24 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bottomNavBackground"
-    tools:context=".SearchFragment">
+    tools:context=".Search">
 
-    <EditText
-        android:id="@+id/search_query"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/baseline_search_24"
-        android:hint="Введите запрос для поиска рецептов"
-        android:inputType="text" />
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_results"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-</LinearLayout>
+</FrameLayout>
