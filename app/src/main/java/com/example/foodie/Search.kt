@@ -1,10 +1,15 @@
 package com.example.foodie
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +40,45 @@ class Search : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        /*
+        super.onViewCreated(view, savedInstanceState)
+        val searchField: EditText = view.findViewById(R.id.searchInput_editText)
+        val recipesView:ListView = view.findViewById(R.id.listOfFoundRecipes)
+        val searchButton:Button = view.findViewById(R.id.start_search_button)
+        var recipesFound:MutableList<RecipeEntity> = mutableListOf()
+        val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1, recipesFound)
+        recipesView.adapter = adapter
+        searchButton.setOnClickListener{
+            val inputTitle = searchField.text.toString().trim().lowercase(Locale.ROOT)
+            recipesFound = App.database.recipeDao().findByTitle(inputTitle)
+            adapter.addAll(recipesFound)
+        }
+        /*
+        searchField.addTextChangedListener {
+            fun afterTextChanged(s: Editable) {
+                val foundRecipes:List<RecipeEntity> = App.database.recipeDao().findByTitle(s.toString())
+                if(foundRecipes.isNotEmpty()){
+                    Toast.makeText(context,"All good",Toast.LENGTH_SHORT).show()
+                }
+                if(foundRecipes.isNotEmpty()){
+                    Toast.makeText(context,"All bad",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        */
+        */
+        val searchField: EditText = view.findViewById(R.id.searchInput_editText)
+        var recipeRecyclerView:RecyclerView = view.findViewById(R.id.listOfFoundRecipesRecyclerView)
+        recipeRecyclerView.layoutManager = LinearLayoutManager(context)
+        val searchButton:Button = view.findViewById(R.id.button_start_search)
+        var recipesFound:MutableList<RecipeEntity> = mutableListOf()
+        searchButton.setOnClickListener{
+            val inputTitle = searchField.text.toString().trim().lowercase(Locale.ROOT)
+            recipesFound = App.database.recipeDao().findByTitle(inputTitle)
+            recipeRecyclerView.adapter = RecipeAdapter(recipesFound)
+        }
     }
 
     companion object {

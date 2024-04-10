@@ -4,18 +4,17 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Insert
 import androidx.room.Delete
-import androidx.room.Update
 import androidx.room.OnConflictStrategy
 
 @Dao
-interface AllergiesDao {
+interface AllergyDao {
     @Query("SELECT * FROM allergies")
-    fun getAll(): List<AllergiesEntity>
+    fun getAll(): List<AllergyEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(allergy: AllergiesEntity)
+    fun insert(allergy: AllergyEntity)
 
     @Delete
-    fun delete(allergy: AllergiesEntity)
+    fun delete(allergy: AllergyEntity)
 }
 

@@ -6,16 +6,17 @@ import androidx.room.ColumnInfo
 
 @Entity(tableName = "recipes")
 data class RecipeEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "recipe_id") val recipeId: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo("recipe_id")val recipeId: Int,
 
-    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo("recipe_title")val recipeTitle: String,
 
-    @ColumnInfo(name = "image") val image: String,
+    @ColumnInfo("recipe_image")val recipeImage: String?,
 
-    @ColumnInfo(name = "instructions") val instructions: String,
+    @ColumnInfo("recipe_instruction")val recipeInstruction: String,
 
-    @ColumnInfo(name = "category") val category: String,
+    @ColumnInfo("recipe_category")val recipeCategory: String?,
 
-    @ColumnInfo(name = "calories") val calories: Int
-)
+    @ColumnInfo("recipe_calories")val recipeCalories: Int?,
+
+    )

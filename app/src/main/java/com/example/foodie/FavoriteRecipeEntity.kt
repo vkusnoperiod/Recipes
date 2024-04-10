@@ -10,11 +10,11 @@ import androidx.room.PrimaryKey
         ForeignKey(entity = UserEntity::class,
             parentColumns = arrayOf("user_id"),
             childColumns = arrayOf("user_id"),
-            onDelete = ForeignKey.CASCADE),
+            ),
         ForeignKey(entity = RecipeEntity::class,
             parentColumns = arrayOf("recipe_id"),
             childColumns = arrayOf("recipe_id"),
-            onDelete = ForeignKey.CASCADE)
+            )
     ])
 data class FavoriteRecipeEntity(
     @PrimaryKey(autoGenerate = true)

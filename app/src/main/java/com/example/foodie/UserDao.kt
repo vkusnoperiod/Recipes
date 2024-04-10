@@ -12,7 +12,7 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAll(): List<UserEntity>
 
-    @Query("SELECT * FROM users WHERE id = :userId")
+    @Query("SELECT * FROM users WHERE user_id = :userId")
     fun findById(userId: Int): UserEntity
 
     @Query("SELECT * FROM users WHERE username = :username")

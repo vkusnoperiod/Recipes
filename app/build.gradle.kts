@@ -63,4 +63,6 @@ dependencies {
     implementation("androidx.room:room-rxjava2:2.4.2")
     // Или для RxJava3
     implementation("androidx.room:room-rxjava3:2.4.2")
+
+    implementation("com.squareup.picasso:picasso:2.71828")
 }

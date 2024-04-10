@@ -2,11 +2,13 @@ package com.example.foodie
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,31 +17,28 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home_button -> {
 
-                    replaceFragment(HomeFragment())
+                    replaceFragment(Home())
                     true
                 }
 
                 R.id.search_button -> {
 
-                    replaceFragment(SearchFragment())
+                    replaceFragment(Search())
                     true
                 }
                 R.id.fridge_button -> {
 
-                    replaceFragment(TodayFragment())
+                    replaceFragment(Today())
                     true
                 }
                 R.id.profile_button -> {
 
-                    replaceFragment(ProfileFragment())
+                    replaceFragment(Profile())
                     true
                 }
                 else -> false
             }
         }
-
-
-        bottomNav.selectedItemId = R.id.home_button
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -47,4 +46,5 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.FrameLayoutMainPage, fragment)
         transaction.commit()
     }
+
 }

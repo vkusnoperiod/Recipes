@@ -4,18 +4,17 @@ import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import androidx.room.ForeignKey
 
-
 @Entity(tableName = "users")
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null, // id автоматически генерируется и nullable
+    @ColumnInfo(name = "user_id")val userId: Int,
 
-    val username: String,
+    @ColumnInfo(name = "username")val username: String,
 
-    val password: String,
+    @ColumnInfo(name = "user_password")val userPassword: String,
 
-    val favouriteRecipeId: Int? = null
-) {
+    @ColumnInfo(name = "person_name")val personName:String,
 
-    constructor(username: String, password: String) : this(null, username, password, null)
-}
+    @ColumnInfo(name = "person_sex")val personSex:String
+
+)

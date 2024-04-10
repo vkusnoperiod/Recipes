@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Today">
+    android:background="@color/bottomNavBackground"
+    tools:context=".Search" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/calories_field"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Сколько калорий"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/button_start_search"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
+
+    <View
+        android:id="@+id/view_designator_menu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="2dp"
+        android:layout_marginTop="70dp"
+        android:background="#A09494"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Today"
+        android:textColor="@color/black"
+        android:textColorLink="#B00F0F"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/searchInput_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_search_24"
+        android:ems="10"
+        android:hint="Введите продукт"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_designator_menu" />
+
+    <Button
+        android:id="@+id/button_start_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Найти рецепты"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfFoundRecipesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
+
+    <ListView
+        android:id="@+id/listOfIngredients"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_ingredient_to_fridge" />
+
+    <Button
+        android:id="@+id/button_add_ingredient_to_fridge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput_editText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

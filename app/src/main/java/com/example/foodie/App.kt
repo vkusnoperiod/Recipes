@@ -10,9 +10,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        database = Room.databaseBuilder(this, AppDatabase::class.java, "recipes.db")
-            // Логика конфигурации базы данных (миграции, onCreate, onOpen и т.д.)
-            .build()
+        database = AppDatabase.getDatabase(applicationContext)
     }
 }
 

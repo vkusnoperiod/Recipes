@@ -10,11 +10,16 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes")
     fun getAll(): List<RecipeEntity>
 
-    @Query("SELECT * FROM recipes WHERE recipe_id = :recipeId")
-    fun findById(recipeId: Int): RecipeEntity
+    @Query("SELECT * FROM recipes WHERE recipe_title LIKE '%' || :recipeTitle || '%'")
+    fun findByTitle(recipeTitle: String): MutableList<RecipeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(recipe: RecipeEntity)
+
+    @Query("SELECT * FROM recipes \n" +
+            "        WHERE recipe_id IN (:recipeIds) \n" +
+            "        AND recipe_calories <= :maxCalories ")
+    fun findRecipesByIds(recipeIds: List<Int>, maxCalories:Int): MutableList<RecipeEntity>
 
     @Update
     fun update(recipe: RecipeEntity)

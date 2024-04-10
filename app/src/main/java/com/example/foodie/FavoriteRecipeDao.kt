@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface FavoriteRecipesDao {
+interface FavoriteRecipeDao {
     @Query("SELECT * FROM fridge")
     fun getAll(): List<FridgeEntity>
 
