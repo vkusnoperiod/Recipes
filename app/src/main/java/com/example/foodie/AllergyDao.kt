@@ -11,6 +11,8 @@ interface AllergyDao {
     @Query("SELECT * FROM allergies")
     fun getAll(): List<AllergyEntity>
 
+    @Query("SELECT COALESCE(MAX(allergy_id), -1) FROM allergies")
+    fun getLastAllergyId(): Int
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(allergy: AllergyEntity)
 

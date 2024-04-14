@@ -16,5 +16,4 @@ data class UserEntity(
     @ColumnInfo(name = "person_name")val personName:String,
 
     @ColumnInfo(name = "person_sex")val personSex:String
-
 )

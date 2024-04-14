@@ -5,18 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bottomNavBackground"
-    tools:context=".Search" >
+    tools:context=".SearchFragment" >
 
     <EditText
         android:id="@+id/calories_field"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="237dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Сколько калорий"
         android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/button_start_search"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
 
@@ -65,10 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:text="Найти рецепты"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
 
     <androidx.recyclerview.widget.RecyclerView

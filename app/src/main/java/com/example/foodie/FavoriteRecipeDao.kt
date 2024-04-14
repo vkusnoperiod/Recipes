@@ -11,8 +11,8 @@ interface FavoriteRecipeDao {
     @Query("SELECT * FROM fridge")
     fun getAll(): List<FridgeEntity>
 
-    @Query("SELECT * FROM fridge WHERE user_id = :userId")
-    fun findByUserId(userId: Int): List<FridgeEntity>
+    @Query("SELECT * FROM favorite_recipes WHERE user_id = :userId")
+    fun findFavoriteRecipeByUserId(userId: Int): List<FavoriteRecipeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(fridge: FridgeEntity)
