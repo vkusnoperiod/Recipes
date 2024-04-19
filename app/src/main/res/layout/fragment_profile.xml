@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/profile_textView_ceiling"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/favorites_button"
+        android:id="@+id/profile_button_favorites"
         android:layout_width="181dp"
         android:layout_height="51dp"
         android:layout_marginTop="16dp"
@@ -44,7 +44,7 @@
         app:icon="@drawable/baseline_favorite_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_person_name" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_textView_person_name" />
 
     <Button
         android:id="@+id/profile_button_logout"
@@ -57,21 +57,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_button_personal_info"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_button_favorites"
+        app:layout_constraintVertical_bias="0.085" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profile_imageView_profile_picture"
         android:layout_width="161dp"
         android:layout_height="125dp"
         android:layout_marginTop="52dp"
         android:src="@drawable/profile_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_textView_ceiling" />
 
     <TextView
-        android:id="@+id/profile_person_name"
+        android:id="@+id/profile_textView_person_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -80,20 +80,7 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/profile_button_personal_info"
-        android:layout_width="181dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#282424"
-        android:text="Pesonal Info"
-        android:textSize="18dp"
-        app:icon="@drawable/baseline_edit_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favorites_button" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_imageView_profile_picture" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

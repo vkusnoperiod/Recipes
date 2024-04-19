@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottomNavBackground"
+    tools:context=".FavoritesActivity" >
+
+    <View
+        android:id="@+id/view_designator_top"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="70dp"
+        android:background="#A09494"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Favorite Recipes"
+        android:textColor="@color/black"
+        android:textColorLink="#B00F0F"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfFoundRecipesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_designator_top" />
+
+    <TextView
+        android:id="@+id/textView_your_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Your List: "
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/listOfFoundRecipesRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_designator_top" />
+
+    <ImageView
+        android:id="@+id/favorite_recipes_imageView_exit_to_profile"
+        android:layout_width="43dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/listOfFoundRecipesRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toEndOf="@+id/textView_your_list"
+        app:layout_constraintTop_toBottomOf="@+id/textView_top"
+        app:layout_constraintVertical_bias="0.619"
+        app:srcCompat="@drawable/baseline_exit_to_app_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

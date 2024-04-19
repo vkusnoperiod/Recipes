@@ -1,5 +1,6 @@
 package com.example.foodie
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,7 +44,6 @@ class SearchFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         /*
-        super.onViewCreated(view, savedInstanceState)
         val searchField: EditText = view.findViewById(R.id.searchInput_editText)
         val recipesView:ListView = view.findViewById(R.id.listOfFoundRecipes)
         val searchButton:Button = view.findViewById(R.id.start_search_button)
@@ -69,6 +69,7 @@ class SearchFragment : Fragment() {
         }
         */
         */
+        super.onViewCreated(view, savedInstanceState)
         val searchField: EditText = view.findViewById(R.id.searchInput_editText)
         var recipeRecyclerView:RecyclerView = view.findViewById(R.id.listOfFoundRecipesRecyclerView)
         recipeRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -77,8 +78,19 @@ class SearchFragment : Fragment() {
         searchButton.setOnClickListener{
             val inputTitle = searchField.text.toString().trim().lowercase(Locale.ROOT)
             recipesFound = App.database.recipeDao().findRecipeByTitleFraction(inputTitle)
-            recipeRecyclerView.adapter = RecipeAdapter(recipesFound)
+            var adapter = RecipeAdapter(recipesFound)
+            adapter.setOnItemClickListener(object: RecipeAdapter.onItemClickListener{
+                override fun onItemClick(position: Int) {
+                    Session.currentRecipeId = recipesFound[position].recipeId
+                    val intent : Intent = Intent(context, RecipeInformationActivity::class.java)
+                    startActivity(intent)
+                }
+            })
+            recipeRecyclerView.adapter = adapter
         }
+
+
+
     }
 
     companion object {

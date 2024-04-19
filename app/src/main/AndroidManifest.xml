@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="com.example.foodie.App"
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,6 +27,9 @@
         <activity android:name=".AuthenticatedActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".FavoritesActivity" />
+        <activity android:name=".RecipeInformationActivity"/>
+        <activity android:name=".SearchActivity"/>
 
     </application>
 

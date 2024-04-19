@@ -14,11 +14,6 @@ class AuthenticatedActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.home_button -> {
-
-                    replaceFragment(HomeFragment())
-                    true
-                }
 
                 R.id.search_button -> {
 

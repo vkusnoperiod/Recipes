@@ -9,12 +9,17 @@ import androidx.room.OnConflictStrategy
 @Dao
 interface FridgeDao {
     @Query("SELECT * FROM fridge")
-    fun getAll(): List<FridgeEntity>
+    fun getAll(): MutableList<FridgeEntity>
 
-    @Query("SELECT * FROM fridge WHERE user_id = :userId")
-    fun findIngredientsByUserId(userId: Int): List<FridgeEntity>
     @Query("SELECT COALESCE(MAX(fridge_product_id), -1) FROM fridge")
     fun getLastFridgeProductId(): Int
+
+    @Query("SELECT ingredient_id FROM fridge WHERE user_id = :userId")
+    fun getFridgeProductsByUserId(userId: Int): MutableList<Int>
+
+
+    @Query("SELECT * FROM ingredients WHERE ingredient_id = :ingredientId")
+    fun getIngredientItemByIngredientId(ingredientId: Int): IngredientEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(fridge: FridgeEntity)

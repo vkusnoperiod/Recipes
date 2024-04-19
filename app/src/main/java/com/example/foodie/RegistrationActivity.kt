@@ -113,6 +113,7 @@ class RegistrationActivity : AppCompatActivity() {
                     "User Added!",
                     Toast.LENGTH_LONG)
                 toastUserAdded.show()
+                Session.currentUsername = inputUsername.text.toString()
                 val intent: Intent = Intent(this, AuthenticatedActivity::class.java)
                 startActivity(intent)
             }

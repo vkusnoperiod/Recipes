@@ -28,6 +28,9 @@ interface UserDao {
 
     @Query("SELECT user_password FROM users WHERE username = :username")
     fun getPasswordByUsername(username: String): String
+
+    @Query("SELECT person_name FROM users WHERE username = :username")
+    fun getPersonNameByUsername(username: String): String
     @Update
     fun update(user: UserEntity)
 

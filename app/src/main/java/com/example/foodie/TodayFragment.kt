@@ -1,5 +1,6 @@
 package com.example.foodie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.Toast
+import androidx.core.view.contains
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -42,37 +45,73 @@ class TodayFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_today, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
         super.onViewCreated(view, savedInstanceState)
-        val searchField: EditText = view.findViewById(R.id.searchInput_editText)
-        val fridgeView: ListView = view.findViewById(R.id.listOfIngredients)
-        val addToFridgeButton:Button = view.findViewById(R.id.button_add_ingredient_to_fridge)
-        var ingredientsAvailable:MutableList<String> = mutableListOf()
-        val adapterFridge = ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1, ingredientsAvailable)
-        fridgeView.adapter = adapterFridge
-        addToFridgeButton.setOnClickListener{
-            val inputTitle = searchField.text.toString().trim()
-            adapterFridge.add(inputTitle)
-        }
+        val ingredientField: EditText = view.findViewById(R.id.today_ingredient_textView)
+        val fridgeView: RecyclerView = view.findViewById(R.id.listOfIngredients)
+        val addToFridgeButton: Button = view.findViewById(R.id.button_add_ingredient_to_fridge)
+        var ingredientsAvailable: MutableList<FridgeEntity> = mutableListOf()
 
-        var recipeRecyclerView: RecyclerView = view.findViewById(R.id.listOfFoundRecipesRecyclerView)
+        ingredientsAvailable = App.database.fridgeDao().getAll()
+        fridgeView.layoutManager = LinearLayoutManager(context)
+        var adapter = IngredientAdapter(ingredientsAvailable)
+        adapter.setOnItemClickListener(object : IngredientAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+                App.database.fridgeDao().delete(ingredientsAvailable[position])
+                adapter.removeAt(position)
+            }
+        })
+
+        addToFridgeButton.setOnClickListener {
+            val newFridgeEntity = FridgeEntity(
+                App.database.fridgeDao().getLastFridgeProductId() + 1,
+                App.database.userDao().findByUsername(Session.currentUsername).userId,
+                App.database.ingredientDao()
+                    .findIngredientByTitleFraction(ingredientField.text.toString()).ingredientId
+            )
+            App.database.fridgeDao().insert(
+                newFridgeEntity
+            )
+            adapter.insert(newFridgeEntity)
+        }
+        fridgeView.adapter = adapter
+
+        var recipeRecyclerView: RecyclerView =
+            view.findViewById(R.id.listOfFoundRecipesRecyclerView)
         recipeRecyclerView.layoutManager = LinearLayoutManager(context)
-        var calories_param:Int = 3000
+        var calories_param: Int = 3000
         var caloriesField = view.findViewById<EditText>(R.id.calories_field)
-        val searchButton:Button = view.findViewById(R.id.button_start_search)
-        var recipesFound:MutableList<RecipeEntity> = mutableListOf()
-        searchButton.setOnClickListener{
+        val searchButton: Button = view.findViewById(R.id.button_start_search)
+        var recipesFound: MutableList<RecipeEntity> = mutableListOf()
+        searchButton.setOnClickListener {
             calories_param = caloriesField.text.toString().toInt()
-            val filteredIngredients = App.database.ingredientDao().filterIngredientsByTitle(ingredientsAvailable)
 
-            val recipeIdsWithEnoughMatches = findRecipesWithEnoughMatches(filteredIngredients)
+            val listOfAvailableIngredients = App.database.ingredientDao()
+                .getIngredientsByIds(ingredientsAvailable.map { it.ingredientId })
 
-            var matchingRecipes = App.database.recipeDao().findRecipesByIds(recipeIdsWithEnoughMatches, calories_param)
 
-            recipeRecyclerView.adapter = RecipeAdapter(matchingRecipes)
+
+
+            val recipeIdsWithEnoughMatches = findRecipesWithEnoughMatches(listOfAvailableIngredients)
+
+            var matchingRecipes = App.database.recipeDao()
+                .findRecipesByIdsAndCalories(recipeIdsWithEnoughMatches, calories_param)
+
+            val adapter = RecipeAdapter(matchingRecipes)
+            adapter.setOnItemClickListener(object : RecipeAdapter.onItemClickListener {
+
+
+                override fun onItemClick(position: Int) {
+                    val intent: Intent = Intent(context, RecipeInformationActivity::class.java)
+                    startActivity(intent)
+                }
+            })
+            recipeRecyclerView.adapter = adapter
         }
+
 
         /*
         searchField.addTextChangedListener {
@@ -109,10 +148,11 @@ class TodayFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-        fun findRecipesWithEnoughMatches(filteredIngredients: List<IngredientEntity>): List<Int> {
+
+        fun findRecipesWithEnoughMatches(filteredIngredients: MutableList<IngredientEntity>): List<Int> {
             val recipeCounts = filteredIngredients.groupBy { it.recipeId }
                 .mapValues { (_, ingredients) -> ingredients.size }
-                .filter { it.value >= 5  }
+                .filter { it.value >= 1 }
             return recipeCounts.keys.toList()
         }
     }

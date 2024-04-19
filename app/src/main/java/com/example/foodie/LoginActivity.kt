@@ -58,8 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 )
                 toast.show()
-                inputPassword.text.clear()
-                inputUsername.text.clear()
+                Session.currentUsername = inputUsername.text.toString()
                 val intent = Intent(this, AuthenticatedActivity::class.java)
                 startActivity(intent)
             }

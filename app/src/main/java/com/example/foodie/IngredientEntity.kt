@@ -3,7 +3,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
-import androidx.room.Index
 
 @Entity(
     tableName = "ingredients",
@@ -19,6 +18,6 @@ data class IngredientEntity(
 
     @ColumnInfo("recipe_id")val recipeId: Int,
 
-    @ColumnInfo("ingredient_title")val ingredient: String
+    @ColumnInfo("ingredient_title")val ingredientTitle: String
 )
 

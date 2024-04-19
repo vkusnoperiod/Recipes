@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,10 +44,17 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val buttonProfileLogOut:Button = view.findViewById(R.id.profile_button_logout)
 
+        val buttonFavorites:Button = view.findViewById(R.id.profile_button_favorites)
+        val textViewPersonName:TextView = view.findViewById(R.id.profile_textView_person_name)
+        textViewPersonName.text = App.database.userDao().getPersonNameByUsername(Session.currentUsername)
 
+        buttonFavorites.setOnClickListener {
+            val intent: Intent = Intent(context, FavoritesActivity::class.java)
+            startActivity(intent)
+        }
 
         buttonProfileLogOut.setOnClickListener {
-
+            Session.currentUsername = "Off"
             val intent: Intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }

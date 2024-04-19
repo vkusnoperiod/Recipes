@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/searchInput_editText"
+        android:id="@+id/today_ingredient_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/baseline_search_24"
@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listOfIngredients" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listOfIngredients"
         android:layout_width="0dp"
         android:layout_height="180dp"
@@ -96,6 +96,6 @@
         android:text="Добавить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchInput_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/today_ingredient_textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
